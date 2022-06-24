@@ -30,10 +30,17 @@ public class ReadThread extends Thread {
                 Scanner scan = new Scanner(conexao.getInputStream());
                 txt = scan.nextLine();
 
-                Platform.setImplicitExit(false);
+                String finalTxt = txt;
+                Platform.runLater(new Runnable(){
+                    @Override
+                    public void run() {
+                        HelloApplication.mensagens.add(new Label(finalTxt),0,HelloApplication.countMessage);
+                        HelloApplication.countMessage++;
+                    }
+                });
 
-                HelloApplication.mensagens.add(new Label(txt),0,HelloApplication.countMessage);
-                HelloApplication.countMessage++;
+//                HelloApplication.mensagens.add(new Label(txt),0,HelloApplication.countMessage);
+//                HelloApplication.countMessage++;
                 System.out.println(txt);
 
                 conexao.close();

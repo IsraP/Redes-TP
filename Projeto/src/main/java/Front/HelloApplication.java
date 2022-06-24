@@ -71,7 +71,7 @@ public class HelloApplication extends Application {
             if(!tftexto.getText().isEmpty()){
                 String msg = tfPortRemV + "-" + tfPortDestV + "-"+ tftexto.getText();
                 chat.writeThread.enviar(msg);
-                HelloApplication.mensagens.add(new Label(msg), 0, HelloApplication.countMessage);
+                HelloApplication.mensagens.add(new Label("[" + tfPortRemV + "] diz: " + tftexto.getText()), 0, HelloApplication.countMessage);
                 HelloApplication.countMessage++;
             }
 

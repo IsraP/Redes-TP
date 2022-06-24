@@ -32,6 +32,7 @@ public class ChatServer {
 
         for(ServerThread entry : currentConnections){
             if(portTo == entry.portTo && portFrom == entry.portFrom){
+                entry.msgs.add(msg);
                 return entry;
             }
         }
@@ -72,6 +73,7 @@ public class ChatServer {
                 conexaoComCliente.close();
 
                 conexao.close();
+                scan.close();
             }
 
         } catch (IOException e) {

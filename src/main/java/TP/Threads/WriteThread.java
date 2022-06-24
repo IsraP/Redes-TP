@@ -8,10 +8,12 @@ import java.util.Scanner;
 
 public class WriteThread extends Thread {
 
-    Socket connection;
+    String ip;
+    int port;
 
-    public WriteThread(Socket connection){
-        this.connection = connection;
+    public WriteThread(String ip, int port){
+        this.ip = ip;
+        this.port = port;
     }
 
     public void run(String msg){
@@ -26,8 +28,14 @@ public class WriteThread extends Thread {
             txt = scan.nextLine();
 
             try {
+                Socket connection = new Socket(ip, port);
+
                 DataOutputStream saida = new DataOutputStream(connection.getOutputStream()); // pega informacoes do buffer de recebimento do servidor
                 saida.writeBytes(msg + txt +'\n'); // envia
+                saida.flush();
+                saida.close();
+
+                connection.close();
             }
             catch (IOException e) {
                 e.printStackTrace();

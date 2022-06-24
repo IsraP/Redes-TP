@@ -29,6 +29,8 @@ public class ReadThread extends Thread {
                 txt = scan.nextLine();
 
                 System.out.println(txt);
+
+                conexao.close();
             }
 
         } catch (IOException e) {

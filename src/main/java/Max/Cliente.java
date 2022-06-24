@@ -21,8 +21,8 @@ class Cliente
          DataOutputStream saida = new DataOutputStream(socket.getOutputStream());
          saida.writeBytes(lerString() + '\n');
 
-//         BufferedReader entrada = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-//         System.out.println("FROM SERVER: " + entrada.readLine());
+         BufferedReader entrada = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+         System.out.println("FROM SERVER: " + entrada.readLine());
          socket.close();
       }
 

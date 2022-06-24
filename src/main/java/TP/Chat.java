@@ -3,25 +3,17 @@ package TP;
 import TP.Threads.ReadThread;
 import TP.Threads.WriteThread;
 
-import java.io.IOException;
-import java.net.Socket;
 import java.util.Scanner;
 
 public class Chat {
     ReadThread readThread;
     WriteThread writeThread;
-    Socket connection;
 
     public Chat(String ip, int port, int portTo){
-        try {
-            connection = new Socket(ip, port);
 
-            readThread = new ReadThread(portTo);
-            writeThread = new WriteThread(connection);
+        readThread = new ReadThread(portTo);
+        writeThread = new WriteThread(ip, port);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public String parseMessage(Integer portTo, Integer portFrom, String txt){

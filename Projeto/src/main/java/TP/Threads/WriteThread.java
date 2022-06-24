@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class WriteThread extends Thread {
+public class WriteThread extends Thread{
 
     String ip;
     int port;

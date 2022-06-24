@@ -11,6 +11,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class HelloApplication extends Application {
@@ -70,7 +71,7 @@ public class HelloApplication extends Application {
             if(!tftexto.getText().isEmpty()){
                 String msg = tfPortRemV + "-" + tfPortDestV + "-"+ tftexto.getText();
                 chat.writeThread.enviar(msg);
-                HelloApplication.mensagens.add(new Label(msg),0,HelloApplication.countMessage);
+                HelloApplication.mensagens.add(new Label(msg), 0, HelloApplication.countMessage);
                 HelloApplication.countMessage++;
             }
 
@@ -102,7 +103,7 @@ public class HelloApplication extends Application {
     private String tfPortDestV= "";
     public void OpenDialog(ActionEvent evt)  {
 
-        tfPortRem.setText(tfPortRemV;
+        tfPortRem.setText(tfPortRemV);
         tfipRemet.setText(tfipRemetV);
         tfipDest.setText(tfipDestV);
         tfPortDest.setText(tfPortDestV);
@@ -158,8 +159,11 @@ public class HelloApplication extends Application {
                     || tfipRemet.getText() != tfipRemetV
                     || tfipDest.getText() != tfipDestV
                     || tfPortDest.getText() != tfPortDestV){
-                    mensagens = new GridPane();
+                    mensagens.getChildren().clear();
                     countMessage = 0;
+                    mensagens.setPadding( new Insets(10) );
+                    mensagens.setHgap( 2 );
+                    mensagens.setVgap( 2 );
                 }
                 tfPortRemV = tfPortRem.getText();
                 tfipRemetV = tfipRemet.getText();
@@ -188,8 +192,8 @@ public class HelloApplication extends Application {
 class Chat {
     ReadThread readThread;
     WriteThread writeThread;
-    private static int  serverPort = 4567;
-    private static String  serverIp = "127.0.0.1";
+    private static int  serverPort = 56903;
+    private static String  serverIp = "192.168.18.7";
 
     public Chat( int portTo){
 

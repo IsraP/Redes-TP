@@ -1,6 +1,7 @@
 package TP.Threads;
 
 import Front.HelloApplication;
+import javafx.application.Platform;
 import javafx.scene.control.Label;
 
 import java.io.IOException;
@@ -28,6 +29,8 @@ public class ReadThread extends Thread {
 //                System.out.println("Cliente conectado do IP " + conexao.getInetAddress().getHostAddress() + ":" + port);
                 Scanner scan = new Scanner(conexao.getInputStream());
                 txt = scan.nextLine();
+
+                Platform.setImplicitExit(false);
 
                 HelloApplication.mensagens.add(new Label(txt),0,HelloApplication.countMessage);
                 HelloApplication.countMessage++;

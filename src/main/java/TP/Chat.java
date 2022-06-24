@@ -17,7 +17,7 @@ public class Chat {
             connection = new Socket(ip, port);
 
             readThread = new ReadThread(portTo);
-            writeThread = new WriteThread(connection);
+            writeThread = new WriteThread();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -36,9 +36,9 @@ public class Chat {
         return msg;
     }
 
-    public void enviar(String msg){
+    public void enviar(String msg, String ip, int port){
         writeThread.start();
-        writeThread.run(msg);
+        writeThread.run(msg, ip, port);
     }
 
     public void receber(){
@@ -67,6 +67,6 @@ public class Chat {
         msg = portFrom + "-" + portTo + "-";
 
         chat.receber();
-        chat.enviar(msg);
+        chat.enviar(msg, localIp, portTo);
     }
 }

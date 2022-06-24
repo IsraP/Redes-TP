@@ -28,7 +28,7 @@ public class ReadThread extends Thread {
                 Scanner scan = new Scanner(conexao.getInputStream());
                 txt = scan.nextLine();
 
-                System.out.println(txt);
+                System.out.println("COSIASDASDAS - " + txt);
             }
 
         } catch (IOException e) {

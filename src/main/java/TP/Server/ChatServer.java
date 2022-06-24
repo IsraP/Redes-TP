@@ -22,7 +22,7 @@ public class ChatServer {
         int portFrom;
         String ip = "127.0.0.1";
         String msg;
-
+        System.out.println("TXT THREAD CREATE  = " + txt+"\n\n");
         String[] values = txt.split("-");
 
         portFrom = Integer.parseInt(values[0]);
@@ -53,21 +53,20 @@ public class ChatServer {
             while(true){
                 Socket conexao = connectionListener.accept();
 
-                System.out.println("Cliente conectado do IP " + conexao.getInetAddress().getHostAddress());
+                //System.out.println("Cliente conectado do IP " + conexao.getInetAddress().getHostAddress());
                 Scanner scan = new Scanner(conexao.getInputStream());
                 txt = scan.nextLine();
 
-                System.out.println(txt);
-
                 ServerThread currentThread = getOrCreateThread(txt);
 
-                System.out.println();
 
-//                System.out.println(currentThread.ip + ":" + currentThread.portTo);
+                //System.out.println(currentThread.ip + ":" + currentThread.portTo);
                 Socket conexaoComCliente = new Socket(currentThread.ip, currentThread.portTo);
-
+                //System.out.println("[" + currentThread.portFrom + "] diz: " + currentThread.msgs.get(currentThread.msgs.size() - 1) + '\n');
                 DataOutputStream saida = new DataOutputStream(conexaoComCliente.getOutputStream());
                 saida.writeBytes("[" + currentThread.portFrom + "] diz: " + currentThread.msgs.get(currentThread.msgs.size() - 1) + '\n');
+                saida.flush();
+                saida.close();
 
                 conexaoComCliente.close();
 
